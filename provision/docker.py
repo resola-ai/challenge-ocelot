@@ -23,7 +23,7 @@ def up_containers(context, containers, detach=True, **kwargs):
     else:
         common.success("Bring up all containers")
     cmd = (
-        f"docker-compose up "
+        f"docker compose up "
         f"{'-d ' if detach else ''}"
         f"{' '.join(containers)}"
     )
@@ -33,7 +33,7 @@ def up_containers(context, containers, detach=True, **kwargs):
 def stop_containers(context, containers):
     """Stop containers."""
     common.success(f"Stopping {' '.join(containers)} containers ")
-    cmd = f"docker-compose stop {' '.join(containers)}"
+    cmd = f"docker compose stop {' '.join(containers)}"
     context.run(cmd)
 
 
@@ -64,5 +64,5 @@ def clear(context):
 
     """
     common.success("Clearing docker-compose")
-    context.run("docker-compose rm -f")
-    context.run("docker-compose down -v --rmi all --remove-orphans")
+    context.run("docker compose rm -f")
+    context.run("docker compose down -v --rmi all --remove-orphans")

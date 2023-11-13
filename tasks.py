@@ -1,6 +1,6 @@
 from invoke import Collection
 
-from provision import django, docker, git, linters, project
+from provision import ci, django, docker, git, linters, project, tests
 
 ns = Collection(
     linters,
@@ -8,6 +8,8 @@ ns = Collection(
     docker,
     django,
     git,
+    ci,
+    tests,
 )
 
 
