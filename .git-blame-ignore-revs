@@ -1,0 +1,5 @@
+#  This file contains commit hashes that need to hide from git-blame
+#  More verbose about it:
+#  https://black.readthedocs.io/en/stable/guides/introducing_black_to_your_project.html
+
+d09bbeb890c6edbbb57ff763cb0f82827cf9d000
