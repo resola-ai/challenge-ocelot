@@ -12,3 +12,26 @@ repos:
     hooks:
     -   id: isort
         name: sort imports
+
+-   repo: https://github.com/asottile/add-trailing-comma
+    rev: v3.1.0
+    hooks:
+      - id: add-trailing-comma
+
+-   repo: local
+    hooks:
+      - id: check_new_migrations
+        name: check for new migrations
+        entry: inv django.check-new-migrations
+        language: system
+        pass_filenames: false
+        types: [ file ]
+        stages: [ push ]
+
+      - id: linters
+        name: run linters
+        entry: inv linters.all
+        language: system
+        pass_filenames: false
+        types: [ python ]
+        stages: [ push ]
