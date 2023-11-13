@@ -54,5 +54,9 @@ EMAIL_USE_TLS = env.bool("EMAIL_HOST_USE_TLS")
 SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = ["*"]
 
+INSTALLED_APPS += (
+    'django_probes',  # wait for DB to be ready to accept connections
+)
+
 AUTH_USER_MODEL = "books.User"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

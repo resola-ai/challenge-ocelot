@@ -9,6 +9,7 @@ def prepare(context):
     common.success("Preparing CI")
     docker.up(context)
     set_up_hosts(context)
+    project.copylocal(context)
     project.install_requirements(context)
 
 

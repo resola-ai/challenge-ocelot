@@ -1,3 +1,5 @@
+import os
+
 from invoke import task
 
 from . import common, django, git
@@ -12,6 +14,7 @@ def init(context, clean=False):
     pre_commit(context)
     common.success("Initial assembly of all dependencies")
     install_tools(context)
+    copylocal(context)
     build(context)
     django.migrate(context)
     django.createsuperuser(context)
@@ -79,3 +82,17 @@ def pip_compile(context, update=False):
 def build(context):
     """Build python environ"""
     install_requirements(context)
+
+
+@task
+def copylocal(context, force_update=True):
+    """Copy local settings from template
+
+    Args:
+        force_update(bool): rewrite file if exists or not
+    """
+    local_settings = "config/settings/local.py"
+    local_template = "config/settings/local.template.py"
+
+    if force_update or not os.path.isfile(local_settings):
+        context.run(" ".join(["cp", local_template, local_settings]))
