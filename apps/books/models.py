@@ -6,6 +6,8 @@ from django.core import validators
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from .constants import BookGenre
+
 
 class UserManager(DjangoUserManager):
     """Adjusted user manager that works w/o `username` field."""
@@ -86,4 +88,9 @@ class Book(models.Model):
         decimal_places=2,
         null=True,
         blank=True,
+    )
+    genre = models.CharField(
+        max_length=12,
+        choices=BookGenre.choices,
+        default=BookGenre.UNCLASSIFIED,
     )
