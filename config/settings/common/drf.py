@@ -15,6 +15,12 @@ REST_FRAMEWORK = dict(
     DEFAULT_PAGINATION_CLASS="rest_framework.pagination.LimitOffsetPagination",
     PAGE_SIZE=25,
     TEST_REQUEST_DEFAULT_FORMAT="json",
+    DEFAULT_THROTTLE_CLASSES=[
+        "rest_framework.throttling.AnonRateThrottle",
+    ],
+    DEFAULT_THROTTLE_RATES={
+        "anon": "1000/day",
+    }
 )
 
 # https://james1345.github.io/django-rest-knox/settings/
