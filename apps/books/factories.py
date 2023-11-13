@@ -29,6 +29,15 @@ class StaffFactory(factory.django.DjangoModelFactory):
         )
 
 
+class AuthorFactory(factory.django.DjangoModelFactory):
+
+    first_name = factory.Faker("first_name")
+    last_name = factory.Faker("last_name")
+
+    class Meta:
+        model = models.User
+
+
 class BookFactory(factory.django.DjangoModelFactory):
     title = factory.Faker('sentence', nb_words=4)
     publish_date = factory.Faker('date_object')

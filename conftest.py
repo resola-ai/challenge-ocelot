@@ -4,7 +4,7 @@ import pytest
 from django.conf import settings
 from rest_framework.test import APIClient
 
-from apps.books.factories import BookFactory, StaffFactory
+from apps.books.factories import AuthorFactory, BookFactory, StaffFactory
 
 
 def pytest_configure():
@@ -78,3 +78,9 @@ def unauthenticated_api_client():
 def book(django_db_blocker):
     with django_db_blocker.unblock():
         return BookFactory()
+
+
+@pytest.fixture(scope="session")
+def paulo_coelho(django_db_blocker):
+    with django_db_blocker.unblock():
+        return AuthorFactory(first_name="Paulo", last_name="Coelho")
