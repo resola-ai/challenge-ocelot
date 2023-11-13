@@ -10,9 +10,7 @@ REST_FRAMEWORK = dict(
     ),
     DEFAULT_SCHEMA_CLASS="drf_spectacular.openapi.AutoSchema",
     DEFAULT_FILTER_BACKENDS=(
-        # "libs.api.filter_backends.CustomDjangoFilterBackend",
-        # "libs.open_api.filters.OrderingFilterBackend",
-        # "libs.open_api.filters.SearchFilterBackend",
+        "django_filters.rest_framework.DjangoFilterBackend",
     ),
     DEFAULT_PAGINATION_CLASS="rest_framework.pagination.LimitOffsetPagination",
     PAGE_SIZE=25,
