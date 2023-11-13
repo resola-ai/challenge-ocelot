@@ -24,8 +24,8 @@ class ActionPermissionMixin:
     def get_permissions(self):
         if hasattr(self, 'action_permission_classes'):
             try:
-                permission_classes = self.action_permission_classes[self.action]
-                return [permission_class() for permission_class in permission_classes]
+                permission_classes = self.action_permission_classes[self.action]  # noqa
+                return [permission_class() for permission_class in permission_classes]  # noqa
             except KeyError:
                 pass
         return super().get_permissions()

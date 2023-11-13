@@ -7,7 +7,7 @@ from apps.books.models import Book
 class BookFilter(django_filters.FilterSet):
 
     author = django_filters.filters.CharFilter(
-        method="filter_by_author"
+        method="filter_by_author",
     )
 
     class Meta:

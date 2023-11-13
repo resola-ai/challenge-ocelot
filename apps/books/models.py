@@ -1,6 +1,5 @@
 # models.py
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import UserManager as DjangoUserManager
 from django.core import validators
 from django.db import models
@@ -61,7 +60,9 @@ class User(PermissionsMixin, AbstractBaseUser):
     is_staff = models.BooleanField(
         _("staff status"),
         default=False,
-        help_text=_("Designates whether the user can log into this admin site."),
+        help_text=_(
+            "Designates whether the user can log into this admin site.",
+        ),
     )
     objects = UserManager()
 

@@ -20,7 +20,7 @@ REST_FRAMEWORK = dict(
     ],
     DEFAULT_THROTTLE_RATES={
         "anon": "1000/day",
-    }
+    },
 )
 
 # https://james1345.github.io/django-rest-knox/settings/
