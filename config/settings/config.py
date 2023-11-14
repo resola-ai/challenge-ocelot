@@ -33,7 +33,7 @@ DATABASES["default"].update(  # noqa
 # ------------------------------------------------------------------------------
 # AWS S3 - Django Storages S3
 # ------------------------------------------------------------------------------
-AWS_STORAGE_BUCKET_NAME = env.str("AWS_S3_BUCKET_NAME")
+AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_REGION_NAME = env.str("AWS_S3_DIRECT_REGION")
 AWS_S3_ENDPOINT_URL = f"https://s3.{AWS_S3_REGION_NAME}.amazonaws.com"
 AWS_DEFAULT_ACL = "public-read"
