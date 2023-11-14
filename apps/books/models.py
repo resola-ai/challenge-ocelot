@@ -72,6 +72,9 @@ class Author(User):
     class Meta:
         proxy = True
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -94,4 +97,16 @@ class Book(models.Model):
         max_length=12,
         choices=BookGenre.choices,
         default=BookGenre.UNCLASSIFIED,
+    )
+
+
+class BookCover(models.Model):
+
+    book = models.ForeignKey(
+        Book,
+        related_name="book_covers",
+        on_delete=models.CASCADE,
+    )
+    file = models.FileField(
+        verbose_name=_("File"),
     )
