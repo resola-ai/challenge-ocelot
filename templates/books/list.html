@@ -1,0 +1,45 @@
+<!-- templates/myapp/book_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <style>
+        /* Set a fixed size for the book cover images */
+        img.book-cover {
+            width: 150px; /* Adjust the width as needed */
+            height: 200px; /* Adjust the height as needed */
+            object-fit: cover; /* Maintain aspect ratio and cover the container */
+            margin-right: 10px; /* Add some spacing between images */
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Book List</h2>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <strong>{{ book.title }}</strong> by {{ book.author }}<br>
+                Published on: {{ book.publish_date }}<br>
+                ISBN: {{ book.isbn }}<br>
+                Price: {% if book.price %}${{ book.price }}{% else %}Not available{% endif %}<br>
+                Genre: {{ book.genre }}<br>
+
+                {% if book.book_covers.all %}
+                    <h3>Book Covers:</h3>
+                    <ul>
+                        {% for cover in book.book_covers.all %}
+                            <li><img class="book-cover" src="{{ cover.file.url }}" alt="Book Cover"></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

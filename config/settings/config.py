@@ -33,10 +33,14 @@ DATABASES["default"].update(  # noqa
 # ------------------------------------------------------------------------------
 # AWS S3 - Django Storages S3
 # ------------------------------------------------------------------------------
-AWS_STORAGE_BUCKET_NAME = env.str("AWS_S3_BUCKET_NAME")
+AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_REGION_NAME = env.str("AWS_S3_DIRECT_REGION")
 AWS_S3_ENDPOINT_URL = f"https://s3.{AWS_S3_REGION_NAME}.amazonaws.com"
 AWS_DEFAULT_ACL = "public-read"
+AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
+AWS_ROLE_ARN = env.str("AWS_ROLE_ARN")
+AWS_SESSION_NAME = 'AssumeRoleSession'
 
 # ------------------------------------------------------------------------------
 # DJANGO SECURITY

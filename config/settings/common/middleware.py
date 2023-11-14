@@ -1,6 +1,6 @@
 MIDDLEWARE = (
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

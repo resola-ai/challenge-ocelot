@@ -1,8 +1,9 @@
 from django.db import transaction
 from rest_framework import serializers
 
-from apps.books.models import Author, Book, User
+from apps.books.models import Author, Book, BookCover, User
 from apps.core.serializers import NestedCreateUpdateMixin
+from apps.s3upload.api.serializers import S3DirectUploadURLField
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -85,8 +86,19 @@ class AuthorSerializer(serializers.ModelSerializer):
         )
 
 
+class BookCoverSerializer(serializers.ModelSerializer):
+    file = S3DirectUploadURLField()
+
+    class Meta:
+        model = BookCover
+        fields = (
+            "file",
+        )
+
+
 class BookSerializer(NestedCreateUpdateMixin, serializers.ModelSerializer):
     author = AuthorSerializer(required=False, allow_null=True)
+    book_covers = BookCoverSerializer(many=True, required=False)
 
     class Meta:
         model = Book
