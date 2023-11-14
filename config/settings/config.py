@@ -22,6 +22,7 @@ BACKEND_URL = env.str("BACKEND_URL", default="localhost:8000")
 # DATABASES - PostgreSQL
 # ------------------------------------------------------------------------------
 DATABASES["default"].update(  # noqa
+    ENGINE=env.str("DB_ENGINE"),
     NAME=env.str("RDS_DB_NAME"),
     USER=env.str("RDS_DB_USER"),
     PASSWORD=env.str("RDS_DB_PASSWORD"),
