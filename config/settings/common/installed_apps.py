@@ -7,6 +7,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.postgres",
+    "storages",
 )
 
 DRF_PACKAGES = (
@@ -19,6 +20,7 @@ DRF_PACKAGES = (
 
 LOCAL_APPS = (
     "apps.books",
+    "apps.s3upload",
 )
 
 THIRD_PARTY = (
