@@ -38,16 +38,6 @@ AWS_S3_ENDPOINT_URL = f"https://s3.{AWS_S3_REGION_NAME}.amazonaws.com"
 AWS_DEFAULT_ACL = "public-read"
 
 # ------------------------------------------------------------------------------
-# EMAIL SETTINGS
-# ------------------------------------------------------------------------------
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = env.str("EMAIL_HOST")
-EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = env.int("EMAIL_HOST_PORT")
-EMAIL_USE_TLS = env.bool("EMAIL_HOST_USE_TLS")
-
-# ------------------------------------------------------------------------------
 # DJANGO SECURITY
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # ------------------------------------------------------------------------------
