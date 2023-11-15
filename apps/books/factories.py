@@ -9,8 +9,8 @@ DEFAULT_PASSWORD = "Test111!"
 
 
 class StaffFactory(factory.django.DjangoModelFactory):
+    """Factory to generate test staff instance."""
 
-    """Factory to generate test User instance."""
     first_name = factory.Faker("first_name")
     password = factory.PostGenerationMethodCall(
         "set_password",
@@ -30,6 +30,7 @@ class StaffFactory(factory.django.DjangoModelFactory):
 
 
 class AuthorFactory(factory.django.DjangoModelFactory):
+    """Factory to generate test author instance."""
 
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")
@@ -39,6 +40,8 @@ class AuthorFactory(factory.django.DjangoModelFactory):
 
 
 class BookFactory(factory.django.DjangoModelFactory):
+    """Factory to generate test book instance."""
+
     title = factory.Faker('sentence', nb_words=4)
     publish_date = factory.Faker('date_object')
     isbn = factory.Faker('isbn10')
