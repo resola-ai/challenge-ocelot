@@ -18,6 +18,7 @@ def book_authored_by_paulo_coelho(paulo_coelho):
 
 
 def test_list_book(unauthenticated_api_client, book):
+    """Ensure unauthenticated user can read books."""
     url = reverse_lazy("v1:book-list")
     response = unauthenticated_api_client.get(url)
     assert response.status_code == status.HTTP_200_OK
@@ -32,7 +33,10 @@ def test_list_book(unauthenticated_api_client, book):
     ],
 )
 def test_create_book(client, expected_status):
+    """Authenticated user should be able to create book
 
+    while unauthenticated ones should not.
+    """
     url = reverse_lazy("v1:book-list")
     data = {
         "author": {
@@ -55,11 +59,13 @@ def test_create_book(client, expected_status):
     ],
 )
 def test_update_book(book, client, expected_status):
-    # Assuming book_id is the ID of the book to update
+    """Authenticated user should be able to update given book
+
+    while unauthenticated ones should not.
+    """
     url = reverse_lazy("v1:book-detail", kwargs={'pk': book.id})
     data = {
         "title": "An Updated Title",
-        # Add other fields to update
     }
     response = client.put(url, data, format="json")
     assert response.status_code == expected_status
@@ -72,6 +78,10 @@ def test_update_book(book, client, expected_status):
     ],
 )
 def test_delete_book(book, client, expected_status):
+    """Authenticated user should be able to delete given book
+
+    while unauthenticated ones should not.
+    """
     url = reverse_lazy("v1:book-detail", kwargs={'pk': book.id})
     response = client.delete(url)
     assert response.status_code == expected_status
@@ -83,6 +93,10 @@ def test_filter_book_by_author_last_or_first_name(
     book,
     book_authored_by_paulo_coelho,
 ):
+    """Ensure books should be able to be filtered by either
+
+    author's last name or first name.
+    """
     url = reverse_lazy("v1:book-list")
     res = authenticated_api_client.get(
         f"{url}?author={paulo_coelho.first_name}",
@@ -104,6 +118,7 @@ def test_filter_book_by_genre(
     scientific_book,
     book,
 ):
+    """Ensure books should be able to be filtered by genre."""
     url = reverse_lazy("v1:book-list")
     res = authenticated_api_client.get(
         f"{url}?genre={BookGenre.SCIENTIFIC}",

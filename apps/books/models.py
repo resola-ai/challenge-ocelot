@@ -68,7 +68,7 @@ class User(PermissionsMixin, AbstractBaseUser):
 
 
 class Author(User):
-
+    """Proxy model to represent User as Author of a Book."""
     class Meta:
         proxy = True
 
