@@ -23,6 +23,9 @@ class S3PresignedUrlView(APIView):
         params = {"name": uuid.uuid4()}
         params.update(serializer.data)
 
+        type_folder = settings.CONTENT_TYPE_FOLDERS[params["content_type"]]
+        params["type_folder"] = type_folder
+
         object_path = settings.FILE_PATH_TEMPLATE.format(**params)
 
         try:

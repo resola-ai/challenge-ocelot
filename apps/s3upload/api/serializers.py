@@ -1,3 +1,4 @@
+import re
 from urllib.parse import urlparse
 
 from django.conf import settings
@@ -6,6 +7,9 @@ from django.core.validators import URLValidator
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import OpenApiExample, extend_schema_serializer
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
+
+from apps.s3upload.constants import FileContentType
 
 
 class S3SignedUrlRequestSerializer(serializers.Serializer):
@@ -15,10 +19,29 @@ class S3SignedUrlRequestSerializer(serializers.Serializer):
         max_length=250,
         required=True,
     )
+    content_type = serializers.ChoiceField(
+        choices=FileContentType.choices,
+        required=True,
+    )
     extension = serializers.CharField(
         max_length=5,
         required=True,
     )
+
+    def validate_destination(self, data):
+        """Check if `data` matches any options in BUCKET_FOLDERS."""
+
+        for destination in settings.BUCKET_FOLDERS:
+            if re.fullmatch(destination, data):
+                return destination
+
+        possible_options = ", ".join(settings.BUCKET_FOLDERS)
+        raise ValidationError({
+            "destination": [(
+                "Destination does not match any option. "
+                "There are all available options: " + possible_options
+            )],
+        })
 
 
 @extend_schema_serializer(
