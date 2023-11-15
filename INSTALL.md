@@ -19,7 +19,7 @@ pyenv local ocelot
 pyenv shell ocelot
 ``````
 
-2. Set up packages for using `invoke`
+2. Set up local requisite python packages
 
 ```bash
 pip install -r requirements/local_build.txt
