@@ -92,7 +92,14 @@ def create_presigned_url(
 
 
 def upload_file_with_presigned_url(presigned_url: str, file_path: str):
-    """Helper func to upload a local file with presigned url."""
+    """Helper func to upload a local file with presigned url.
+
+    We would use this func instead of writing JS
+    to handle uploading on browsers.
+
+    Object url pattern:
+        <bucket_name>.s3.<region_name>.amazonaws.com/<file_path>
+    """
     try:
         with open(file_path, 'rb') as file:
             files = {"file": (file_path, file)}
