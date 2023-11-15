@@ -11,7 +11,7 @@ from rest_framework import status
     ],
 )
 def test_create_staff(client, expected_status):
-    url = reverse("staff")
+    url = reverse("v1:staff")
     data = {
         "email": "example@example.com",
         "new_password": "1234",
