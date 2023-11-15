@@ -6,23 +6,13 @@ BASE_FOLDERS = "apps provision"
 
 
 @task
-def format(context, path=BASE_FOLDERS):
-    context.run(f"python -m black {path}")
-
-
-@task
-def isort(context, path=BASE_FOLDERS):
-    context.run(f"python -m isort {path}")
-
-
-@task
 def flake8(context, path=BASE_FOLDERS):
     context.run(f"python -m flake8 {path}")
 
 
 @task
 def all(context, path=BASE_FOLDERS):
-    linters = [isort, flake8]
+    linters = [flake8]
     failed = []
     for linter in linters:
         try:
