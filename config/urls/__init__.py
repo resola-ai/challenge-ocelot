@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .api import urlpatterns as api_urlpatterns
+from .api_versions import urlpatterns as api_urlpatterns
 from apps.books.views import BookListView
 
 urlpatterns = [
